@@ -1,0 +1,37 @@
+services:
+
+  web1:
+    build: ./web1
+    container_name: bai04_1_web1
+    ports:
+      - "9111:9111"
+    networks:
+      - web-network
+
+  web2:
+    build: ./web2
+    container_name: bai04_1_web2
+    ports:
+      - "9112:9112"
+    networks:
+      - web-network
+      
+  web3:
+    build: ./web3
+    container_name: bai04_1_01_web3
+    ports:
+      - "9113:9113"
+    networks:
+      - web-network
+
+
+  nginx:
+    build: ./nginx
+    container_name: bai04_1_nginx
+    ports:
+      - "9110:9110"
+    networks:
+      - web-network
+      
+networks:
+  web-network:

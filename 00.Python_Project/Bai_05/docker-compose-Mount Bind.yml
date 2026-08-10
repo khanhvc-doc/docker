@@ -1,0 +1,7 @@
+services:
+  web5:
+    build: ./web5
+    ports:
+      - "9050:9050"
+    volumes:
+      - ./data:/app/data

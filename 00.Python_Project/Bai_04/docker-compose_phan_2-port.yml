@@ -1,0 +1,19 @@
+services:
+
+  web1:
+    build: ./web1
+    container_name: bai04_web1
+    ports:
+      - "9011:9011"
+
+  web2:
+    build: ./web2
+    container_name: bai04_web2
+    ports:
+      - "9012:9012"
+
+  nginx:
+    build: ./nginx
+    container_name: bai04_nginx
+    ports:
+      - "9010:9010"
