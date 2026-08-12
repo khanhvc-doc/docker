@@ -1,0 +1,33 @@
+server {
+    listen 80;
+    server_name subcon3.hansollvina.com subcon.hansollvina.com;
+
+    access_log /var/log/nginx/subcon/subcon_access.log main;
+    error_log  /var/log/nginx/subcon/subcon_error.log warn;
+    
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+
+    location / {
+        return 301 https://subcon3.hansollvina.com$request_uri;
+
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name subcon3.hansollvina.com;
+
+    ssl_certificate     /etc/letsencrypt/live/subcon3.hansollvina.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/subcon3.hansollvina.com/privkey.pem;
+
+    access_log /var/log/nginx/pit/ssl_access.log main;
+    error_log  /var/log/nginx/pit/ssl_error.log;
+
+    location / {
+        proxy_pass http://192.168.99.20:8008/hsvn-subcontract/;
+        include /etc/nginx/snippets/proxy-common.conf;
+
+    }
+}

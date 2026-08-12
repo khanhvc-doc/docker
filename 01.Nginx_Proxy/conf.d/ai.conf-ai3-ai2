@@ -1,0 +1,33 @@
+server {
+    listen 80;
+    server_name ai3.hansollvina.com ai2.hansollvina.com ai.hansollvina.com;
+
+    access_log /var/log/nginx/ai/access.log main;
+    error_log  /var/log/nginx/ai/error.log;
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+
+    location / {
+        return 301 https://ai3.hansollvina.com$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name
+        ai3.hansollvina.com
+        ai2.hansollvina.com;
+
+    ssl_certificate     /etc/letsencrypt/live/ai3.hansollvina.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/ai3.hansollvina.com/privkey.pem;
+
+    access_log /var/log/nginx/ai/ssl_access.log main;
+    error_log  /var/log/nginx/ai/ssl_error.log;
+
+    location / {
+        proxy_pass http://192.168.131.15:9009;
+        include /etc/nginx/snippets/proxy-common.conf;
+    }
+}

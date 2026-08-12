@@ -1,0 +1,16 @@
+server {
+    listen 80;
+    server_name subcon3.hansollvina.com;
+
+    access_log /var/log/nginx/subcon/subcon_access.log main;
+    error_log  /var/log/nginx/subcon/subcon_error.log warn;
+    
+
+
+    location / {
+        proxy_pass http://192.168.99.20:8008/hsvn-subcontract/;
+
+        include /etc/nginx/snippets/proxy-common.conf;
+
+    }
+}
