@@ -3,6 +3,7 @@
 ## PHASE 2: HTTPs
 - QUAN TRỌNG: Các host cần xin CA phải được tạo trên DNS (phân giải nslookup với 8.8.8.8 phải thành công)
 - Cấu hình xin CA cho 1 domain trỏ về 1 host
+- NAT port về đúng Nginx Proxy
 
 
 ### I. CẤU TRÚC

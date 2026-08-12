@@ -3,9 +3,6 @@ services:
   nginx:
     image: nginx:stable
     container_name: nginx-proxy-v2
-    
-    environment:
-      - TZ=Asia/Ho_Chi_Minh
 
     ports:
       - "80:80"
@@ -20,7 +17,4 @@ services:
 
       - ./certbot/www:/var/www/certbot:ro
       - ./certbot/conf:/etc/letsencrypt:ro
-
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
     restart: unless-stopped
